@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="Content-Language" content="EN">
+		<meta http-equiv="imagetoolbar" content="no">
+
+		<meta name="keywords" content="promote events, social event promotion, partyplannr, event promoting, rsvp, online ticketing, general admission ticketing, buy tickets, event management">
+		<meta name="description" content="Use PartyPlannr to create and organize who's coming to your party.">
+		<meta name="date" content="{% now "m/d/y" %}">
+		<meta name="distribution" content="global"> 
+		<meta name="audience" content="all">
+		<meta name="rating" content="general">
+		
+		<link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+		<link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui-themeroller.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/navigation.css">
+		
+		<title>PartyPlannr : Home</title>
+
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+			google.load("jquery", "1.2.6");
+			google.load("jqueryui", "1.5.2");
+		</script>
+		<script type="text/javascript" src="/js/jquery.corner.js"></script>
+		<script type="text/javascript" src="/js/jquery.validate.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled - Adds empty span tag after ul.subnav
+	
+				$("ul.topnav li span").click(function() { //When trigger is clicked...
+					
+					//Following events are applied to the subnav itself (moving subnav up and down)
+					$(this).parent().find("ul.subnav").slideDown('fast').show(); //Drop down the subnav on click
+
+					$(this).parent().hover(function() {
+					}, function(){	
+						$(this).parent().find("ul.subnav").slideUp('slow'); //When the mouse hovers out of the subnav, move it back up
+					});
+
+					//Following events are applied to the trigger (Hover events for the trigger)
+					}).hover(function() { 
+						$(this).addClass("subhover"); //On hover over, add class "subhover"
+					}, function(){	//On Hover Out
+						$(this).removeClass("subhover"); //On hover out, remove class "subhover"
+				});
+
+
+				$("#create-button").click(function () {
+					$("#msgbox").text = '';
+					$("#contentform").submit();
+			    });
+				
+				$("#clear-button").click(function () {
+					$("#contentform")[0].reset();
+			    });
+				
+				$("#information").corner("cc:#A9E3F7");
+				
+				$("#eventdate").datepicker({ 
+				    showAnim: "puff"
+				});
+				
+				$("#contentform").validate({
+					rules: {
+						venue: "required",
+						category: "required",
+						event:
+						{
+							required: true
+						},
+						description:
+						{
+							required: true,
+							maxlength: 1000
+						},
+						eventdate: 
+						{
+							required: true,
+							date: true
+						},
+						eventtime:
+						{
+							required: true
+						},
+						email: 
+						{
+							required: true,
+							email: true
+						}
+					}
+				});
+
+			});
+		</script>
+
+		<script type="text/javascript">
+		var RecaptchaOptions = {
+		   theme : 'custom',
+		   custom_theme_widget: 'recaptcha_widget'
+		};
+		</script>
+		
+		<script type="text/javascript"> 
+		function update_user_box() {
+			var user_box = document.getElementById("user");
+
+			user_box.innerHTML =
+			"<span>"
+			+ "<fb:profile-pic uid='loggedinuser' facebook-logo='true'></fb:profile-pic>"
+			+ "Welcome, <fb:name uid='loggedinuser' useyou='false'></fb:name>"
+			+ "</span>";
+
+			FB.XFBML.Host.parseDomTree();
+		}
+		</script>
+		<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US" type="text/javascript"></script><script type="text/javascript">FB.init("aeb808c99ee578b8db50cd761896bdfc");</script>
+	</head>
+	<body>
+		<form action="" method="post" name="contentform" id="contentform"  enctype="multipart/form-data">
+			<div id="header">
+				<div id="container">
+					<div id="logo" style="">
+						<a href="/"><img src="/assets/header.png" alt="PartyPlannr" border="0" align="absmiddle"></a>
+					</div>
+					<div style="border: 0px solid red; text-align: right; float: left; position: relative; width: 390px; height: 41px; color: #fff; font-size: 20px; padding-top: 9px;">
+						<div id="user">
+							<fb:login-button v="2" size="large" onlogin="update_user_box();">Connect with Facebook</fb:login-button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="divfix"></div>
+			<div id="sub-header">
+				<div id="container">
+					<ul class="topnav">
+						<li><a href="/">Home</a></li>
+						<li>
+						<a href="#">Party</a>
+						<ul class="subnav">
+							{% for category in categories %}
+								{% ifequal category.parentcategory "Party" %}
+									<li><a href="/categories/{{ category.uniquename }}">{{ category.name }}</a></li>
+								{% endifequal %}
+							{% endfor %}
+						</ul>
+						</li>
+						<li>
+						<a href="#">Causes</a>
+						<ul class="subnav">
+							{% for category in categories %}
+								{% ifequal category.parentcategory "Causes" %}
+									<li><a href="/categories/{{ category.uniquename }}">{{ category.name }}</a></li>
+								{% endifequal %}
+							{% endfor %}
+						</ul>
+						</li>
+						<li>
+						<a href="#">Education</a>
+						<ul class="subnav">
+							{% for category in categories %}
+								{% ifequal category.parentcategory "Education" %}
+									<li><a href="/categories/{{ category.uniquename }}">{{ category.name }}</a></li>
+								{% endifequal %}
+							{% endfor %}
+						</ul>
+						</li>
+						<li>
+						<a href="#">Meetings</a>
+						<ul class="subnav">
+							{% for category in categories %}
+								{% ifequal category.parentcategory "Meetings" %}
+									<li><a href="/categories/{{ category.uniquename }}">{{ category.name }}</a></li>
+								{% endifequal %}
+							{% endfor %}
+						</ul>
+						</li>
+						<li>
+						<a href="#">Music/Arts</a>
+						<ul class="subnav">
+							{% for category in categories %}
+								{% ifequal category.parentcategory "Music-Arts" %}
+									<li><a href="/categories/{{ category.uniquename }}">{{ category.name }}</a></li>
+								{% endifequal %}
+							{% endfor %}
+						</ul>
+						</li>
+						<li>
+						<a href="#">Sports</a>
+						<ul class="subnav">
+							{% for category in categories %}
+								{% ifequal category.parentcategory "Sports" %}
+									<li><a href="/categories/{{ category.uniquename }}">{{ category.name }}</a></li>
+								{% endifequal %}
+							{% endfor %}
+						</ul>
+						</li>
+						<li>
+						<a href="#">Trips</a>
+						<ul class="subnav">
+							{% for category in categories %}
+								{% ifequal category.parentcategory "Trips" %}
+									<li><a href="/categories/{{ category.uniquename }}">{{ category.name }}</a></li>
+								{% endifequal %}
+							{% endfor %}
+						</ul>
+						</li>
+						<li>
+						<a href="#">Other</a>
+						<ul class="subnav">
+							{% for category in categories %}
+								{% ifequal category.parentcategory "Other" %}
+									<li><a href="/categories/{{ category.uniquename }}">{{ category.name }}</a></li>
+								{% endifequal %}
+							{% endfor %}
+						</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="container">
+				<div id="content">
+				
+				
+				{% block content %}{% endblock %}
+				
+				
+				</div>
+				<div id="content-facebook">
+					<img src="/assets/popular.png">
+				
+					<div style="margin: 5px 0 0 0;">
+						<div style="position: relative; float: left; width: 35px; border: 0px solid blue; margin: 4px 0 0 0;">
+							<img src="/assets/thumbnail-test.png" class="thumbnail">
+						</div>
+						<div style="position: relative; float: left; width: 141px; border: 0px solid green; margin: 0 0 0 5px">
+							<div style="font-weight: bold;">Dave's Christmas Party</div>
+							<div>We need to plan and attend Dave's Christmas party as soon as we can.</div>
+						</div>
+					</div>
+					<div id="divfix"></div>
+
+					<div style=" margin: 5px 0 0 0;">
+						<div style="position: relative; float: left; width: 35px; border: 0px solid blue; margin: 4px 0 0 0;">
+							<img src="/assets/thumbnail-test2.png" class="thumbnail">
+						</div>
+						<div style="position: relative; float: left; width: 141px; border: 0px solid green; margin: 0 0 0 5px">
+							<div style="font-weight: bold;">Central Valley Business Incubator</div>
+							<div>Planning for the upcoming feature of changes we're making!</div>
+						</div>
+					</div>
+					
+					<div style="margin: 5px 0 0 0;">
+						<div style="position: relative; float: left; width: 35px; border: 0px solid blue; margin: 4px 0 0 0;">
+							<img src="/assets/thumbnail-test.png" class="thumbnail">
+						</div>
+						<div style="position: relative; float: left; width: 141px; border: 0px solid green; margin: 0 0 0 5px">
+							<div style="font-weight: bold;">Dave's Christmas Party</div>
+							<div>We need to plan and attend Dave's Christmas party as soon as we can.</div>
+						</div>
+					</div>
+					<div id="divfix"></div>
+					
+					<div style="margin: 5px 0 0 0;">
+						<div style="position: relative; float: left; width: 35px; border: 0px solid blue; margin: 4px 0 0 0;">
+							<img src="/assets/thumbnail-test.png" class="thumbnail">
+						</div>
+						<div style="position: relative; float: left; width: 141px; border: 0px solid green; margin: 0 0 0 5px">
+							<div style="font-weight: bold;">Dave's Christmas Party</div>
+							<div>We need to plan and attend Dave's Christmas party as soon as we can.</div>
+						</div>
+					</div>
+					<div id="divfix"></div>
+					
+					<div style="margin: 5px 0 0 0;">
+						<div style="position: relative; float: left; width: 35px; border: 0px solid blue; margin: 4px 0 0 0;">
+							<img src="/assets/thumbnail-test.png" class="thumbnail">
+						</div>
+						<div style="position: relative; float: left; width: 141px; border: 0px solid green; margin: 0 0 0 5px">
+							<div style="font-weight: bold;">Dave's Christmas Party</div>
+							<div>We need to plan and attend Dave's Christmas party as soon as we can.</div>
+						</div>
+					</div>
+					<div id="divfix"></div>
+				</div>
+			</div>
+			<div id="container">
+					<div id="footer">
+						<div class="col">
+					        <dl class="col-prime">
+						        <dt>Site Links</dt>
+						        <dd><a href="/">Home</a></dd>
+								<dd><a href="/categories">Categories</a></dd>
+						        <dd><a href="/terms">Terms of Use</a></dd>
+								<dd><a href="/privacy">Privacy</a></dd>
+					        </dl>
+					    </div>
+						<div class="col">
+					        <dl class="col-prime">
+						        <dt>Help</dt>
+						        <dd><a href="/faq">FAQ</a></dd>
+					        </dl>
+					    </div>
+						<div class="col-last">
+					        <dl class="col-prime">
+						        <dt>About</dt>
+						        <dd><a href="/about">About PartyPlannr</a></dd>
+								<dd><a href="http://www.facebook.com/pages/PartyPlannr/166802987247">Facebook</a></dd>
+								<dd><a href="http://www.twitter.com/partyplannr" target="_blank">Twitter</a></dd>
+					        </dl>
+					    </div>
+					</div>
+			</div>
+			
+			
+		</form>
+		
+		
+		<script type="text/javascript" charset="utf-8">
+		  var is_ssl = ("https:" == document.location.protocol);
+		  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+		  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		
+		<script type="text/javascript" charset="utf-8">
+		  var feedback_widget_options = {};
+
+		  feedback_widget_options.display = "overlay";  
+		  feedback_widget_options.company = "partyplannr";
+		  feedback_widget_options.placement = "left";
+		  feedback_widget_options.color = "#084060";
+		  feedback_widget_options.style = "praise";
+
+		  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+		</script>
+		
+		<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+		try {
+		var pageTracker = _gat._getTracker("UA-11346092-1");
+		pageTracker._trackPageview();
+		} catch(err) {}
+		</script>
+		
+		<!-- Start Quantcast tag -->
+		<script type="text/javascript">
+		_qoptions={
+		qacct:"p-55UM13lAaUe22"
+		};
+		</script>
+		<script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+		<noscript>
+		<img src="http://pixel.quantserve.com/pixel/p-55UM13lAaUe22.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/>
+		</noscript>
+		<!-- End Quantcast tag -->
+		
+		</body>
+</html>

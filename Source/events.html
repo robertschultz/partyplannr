@@ -1,0 +1,49 @@
+{% extends "header.html" %}
+{% block content %}
+	{% ifnotequal reccount "0" %}
+		<div class="group category-header">
+			<h1 class="page-title category-title">
+				{{ category_value }}
+			</h1>
+			<div>
+				<a href="/categories/{{ category }}/{{ page_prev }}" class="paging">&#171; Prev</a>
+				{% for i in page_count %}
+					{% ifequal page_number i %}
+						<a href="/categories/{{ category }}/{{ i }}" class="paging paging-selected">{{ i }}</a>
+					{% else %}
+						<a href="/categories/{{ category }}/{{ i }}" class="paging">{{ i }}</a>
+					{% endifequal %}
+				{% endfor %}
+				<a href="/categories/{{ category }}/{{ page_next }}" class="paging">Next &#187;</a>
+			</div>
+			<div id="divfix"></div>
+		</div>
+		
+		<div class="group">
+			{% for promotion in promotions %}
+				<div class="promotion-preview">
+					<div class="promotion-preview-icon">
+						<img src="/assets/001_44.png">
+					</div>
+					<div class="promotion-preview-content">
+						<a href="/{{ promotion.uniquename }}" class="promotion-preview-header">{{ promotion.event }}</a>
+						<br>
+						{{ promotion.venue }}, {{ promotion.date }} - {{ promotion.time }}
+						<br><br>
+						{{promotion.description}}
+					</div>
+					<div id="divfix"></div>
+				</div>
+			{% endfor %}
+		</div>
+	{% else %}
+		<div class="group">
+			<h1 class="page-title category-title">
+				{{ category_value }}
+			</h1>
+			<div>
+				There are no events for this category.
+			</div>
+		</div>
+	{% endifnotequal %}
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends "header.html" %}
+{% block content %}
+	{% ifnotequal promotion None %}
+	<div class="group empty-bottom-margin">
+		<h1 id="page-title">
+			{{ promotion.event }}
+		</h1>
+	</div>
+	<div class="group">
+		{{ promotion.venue }}, {{ promotion.date }} - {{ promotion.time }}
+	</div>
+	{% ifnotequal promotion.image None %}
+	<div class="group" id="image" name="image">
+		<img src="/image?id={{ promotion.uniquename }}">
+	</div>
+	{% endifnotequal %}
+	<div class="group">
+		{{ promotion.description }}
+	</div>
+	
+	<div class="group">
+		<div id="feeds">
+			<div id="feed">
+				<a href="/{{ uniquename }}/rss">RSS 2.0 Feed</a>
+			</div>
+			<div id="feed">
+				<a href="/{{ uniquename }}/atom">Atom Feed</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="input-group">
+		<div>
+			<div id="reservation-name">
+				<div class="input-title">
+					Name
+				</div>
+				<div id="name-input">
+					<input type="text" class="input short" id="name" name="name" maxlength="100">
+				</div>
+			</div>
+			<div id="reservation-comment">
+				<div class="input-title">
+					Comment
+				</div>
+				<div id="reservation-comment-input">
+					<input type="text" class="input short" id="comment" name="comment" maxlength="500">
+				</div>
+			</div>
+			
+			<div id="divfix"></div>
+		</div>
+	</div>
+
+	<div class="input-group">
+		<h1 id="page-title">
+			Are you attending?
+		</h1>
+	</div>
+	
+	<div class="input-group">
+		<div>
+			<div id="reservation-guests">
+				<div class="input-title">
+					<div id="guests-label" name="guests-label">0 Guests</div>
+				</div>
+				<div>
+					<a id="add-button"><img src="/assets/action_add.png" align="absmiddle" border="0">&nbsp;Add<a>
+					<br>
+					<a id="remove-button"><img src="/assets/action_remove.png" align="absmiddle" border="0">&nbsp;Remove<a>
+				</div>
+			</div>
+			<div id="divfix"></div>
+		</div>
+	</div>
+	
+	<div id="block">
+		<a id="yes-button"><img src="/assets/yes_button.png"></a>&nbsp;<a id="no-button"><img src="/assets/no_button.png"></a>
+	</div>
+	
+	<div id="divfix"></div>
+
+	<div class="group" id="reservations">
+		{% if showreservations %}
+			<div>
+				{{ reservations.length }}
+			</div>
+			{% for reservation in reservations %}
+				<div class="title">
+					{% ifequal reservation.status "Y" %}
+						<div id="yes">
+							{{ reservation.name }} 
+						</div>
+					{% endifequal %}
+					{% ifequal reservation.status "N" %}
+						<div id="no">
+							{{ reservation.name }}
+						</div>
+					{% endifequal %}
+				</div>
+				{% ifnotequal reservation.comment null %}
+					<div id="reservation-comment-text">
+						{% ifnotequal reservation.guests 0 %}{% ifnotequal reservation.guests None %}+{{ reservation.guests }} Guests<br/> {% endifnotequal %}{% endifnotequal %}{{reservation.comment}}
+					</div>
+				{% endifnotequal %}
+			{% endfor %}
+		{% else %}
+			<div>
+				There are currently no reservations yet.
+			</div>
+		{% endif %}
+	</div>
+	{% else %}
+		<div class="group">
+			<div>
+				There is no such event for the URL specified.  If you felt you reached this page in error, please contact us for further investigation.
+			</div>
+		</div>
+	{% endifnotequal %}
+{% endblock %}

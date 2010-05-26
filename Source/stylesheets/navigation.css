@@ -1,0 +1,71 @@
+
+
+
+ul.topnav {
+	list-style: none;
+	padding: 0 0px;	
+	margin: 0px;
+	float: left;
+}
+ul.topnav li {
+	float: left;
+	margin: 0;	
+	padding: 0 15px 0 0;
+	position: relative; /*--Declare X and Y axis base--*/
+}
+ul.topnav li:last-child {	
+	padding: 0 0 0 0;
+}
+ul.topnav li a{
+	padding: 10px 5px;
+	color: #fff;
+	display: block;
+	text-decoration: none;
+	float: left;
+	font: Normal 11px Tahoma, Verdana, sans-serif;
+}
+ul.topnav li a:hover{
+	background: url(/assets/topnav_hover.gif) no-repeat center top;
+	color: #fff;
+}
+ul.topnav li span { /*--Drop down trigger styles--*/
+	width: 17px;
+	height: 35px;
+	float: left;
+	background: url(/assets/subnav_btn.gif) no-repeat center top;
+}
+ul.topnav li span.subhover {background-position: center bottom; cursor: pointer;} /*--Hover effect for trigger--*/
+ul.topnav li ul.subnav {
+	list-style: none;
+	position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
+	left: 0; top: 35px;
+	background: #0C5A7D;
+	margin: 0; padding: 0;
+	display: none;
+	float: left;
+	width: 170px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	border: 1px solid #0A4D70;
+	z-index: 1000;
+}
+ul.topnav li ul.subnav li{
+	margin: 0; padding: 0;
+	border-top: 0px dotted #0A4D70; /*--Create bevel effect--*/
+	border-bottom: 1px dotted #0A4D70; /*--Create bevel effect--*/
+	clear: both;
+	width: 170px;
+}
+html ul.topnav li ul.subnav li a {
+	float: left;
+	width: 145px;
+	background: #0C5A7D url(/assets/dropdown_linkbg.gif) no-repeat 10px center;
+	padding-left: 20px;
+}
+html ul.topnav li ul.subnav li a:hover { /*--Hover effect for subnav links--*/
+	background: #0A4D70 url(/assets/dropdown_linkbg.gif) no-repeat 10px center; 
+}
+
+

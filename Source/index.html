@@ -1,0 +1,131 @@
+{% extends "header.html" %}
+{% block content %}
+	
+	<div id="divfix"></div>
+
+	<div class="input-group">
+		<div class="input-title">
+			Event
+		</div>
+		<div>
+			<input type="text" class="input" id="event" name="event" maxlength="100" value="{{ event }}">
+		</div>
+		<div id="msgbox">
+		</div>
+	</div>
+	<div class="input-group">
+		<div class="input-title">
+			Location
+		</div>
+		<div>
+			<input type="text" class="input" id="venue" name="venue" maxlength="100" value="{{ venue }}">
+		</div>
+	</div>
+	<div class="input-group">
+		<div class="input-title">
+			Description
+		</div>
+		<div>
+			<textarea rows="10" cols="2" class="input" id="description" name="description">{{ description }}</textarea>
+		</div>
+	</div>
+	<div class="input-group">
+		<div class="input-title">
+			Image
+		</div>
+		<div>
+			<input type="file" class="input imaget" id="image" name="image" size="49">
+		</div>
+	</div>
+	<div class="input-group">
+		<div class="input-title">
+			Category
+		</div>
+		<div>
+			<select name="category" id="category" class="input dropdown">
+				<option value="" selected>- Select Category -</option>
+				{% for category in categories %}
+					{% ifequal category.uniquename selectedcategory %}
+						<option value="{{ category.uniquename }}" selected>{{ category.name }}</option>
+					{% else %}
+						<option value="{{ category.uniquename }}">{{ category.name }}</option>
+					{% endifequal %}
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+	
+	<div class="input-group">
+		<div>
+			<div id="date">
+				<div class="input-title">
+					Date
+				</div>
+				<div id="date-input">
+					<input type="text" class="input short" id="eventdate" name="eventdate" maxlength="30" value="{{ eventdate }}">
+				</div>
+			</div>
+			<div id="time">
+				<div class="input-title">
+					Time
+				</div>
+				<div id="time-input">
+					<input type="text" class="input short" id="eventtime" name="eventtime" maxlength="15" value="{{ eventtime }}">
+				</div>
+			</div>
+			<div id="divfix"></div>
+		</div>
+	</div>
+	
+	<div class="input-group">
+		<div>
+			<input type="checkbox" id="private" name="private" value="checked" {% ifequal private "checked" %}checked{% endifequal %}><label for="private" class="check_label">&nbsp;Hide this event from any public listing.</label>
+		</div>
+	</div>
+	
+	<div class="input-group">
+		<div class="input-title">
+			Email
+		</div>
+		<div>
+			<input type="text" class="input" id="email" name="email" maxlength="300" value="{{ email }}">
+		</div>
+	</div>
+
+	<div class="input-group">
+		<div class="input-title">
+			Verification
+		</div>
+		<div>
+			Please re-type the word(s) in the image below to verify you are human.
+		</div>
+		<div>
+			<div id="recaptcha_widget" style="display:none;">
+				<div id="recaptcha_content">
+					<div id="recaptcha_image"></div>
+				</div>
+				<div class="recaptcha_only_if_incorrect_sol"><label for="recaptcha_response_field" class="error">Incorrect please try again.</label></div>
+			</div>
+			
+			<span class="recaptcha_only_if_image"></span>
+			
+			<div id="recaptcha_input">
+				<input type="text" class="input recaptcha" id="recaptcha_response_field" name="recaptcha_response_field">&nbsp;<a href="javascript:Recaptcha.reload()"><img src="/assets/001_39.png" align="absmiddle" border="0" alt="Refresh Captcha Image"></a>
+			</div>
+
+			<div style="display: block;">
+				{{ captchahtml }}
+			</div>
+		</div>
+	</div>
+	
+	<div id="content-agree">
+		By signing up, you agree to PartyPlannr's <a href="/terms">Terms of Use</a>.  We will never spam you or share your email address with anyone.
+	</div>
+
+	<div id="block">
+		<a id="create-button"><img src="/assets/create-event.png" alt="Create My Event" border="0"></a><a id="clear-button"><img src="/assets/clear-event.png" alt="Clear Event" border="0"></a>
+	</div>
+	
+	<div id="divfix"></div>
+{% endblock %}

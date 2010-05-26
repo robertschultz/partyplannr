@@ -1,0 +1,15 @@
+{% extends "header.html" %}
+{% block content %}
+	<div id="headline">
+		Search events by browsing below by category.  All events within each category is listed by the date it was created.  If you feel there are any categories missing please send us some feedback.
+	</div>
+	{% for category in categories %}
+		<div class="group">
+			<h1 class="page-title category-title-borderless">
+				<a href="/categories/{{ category.uniquename }}">{{ category.name }}</a>
+			</h1>
+			{{ category.description }}
+			<div id="divfix"></div>
+		</div>		
+	{% endfor %}
+{% endblock %}
