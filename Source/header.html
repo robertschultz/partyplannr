@@ -105,20 +105,7 @@
 		   custom_theme_widget: 'recaptcha_widget'
 		};
 		</script>
-		
-		<script type="text/javascript"> 
-		function update_user_box() {
-			var user_box = document.getElementById("user");
-
-			user_box.innerHTML =
-			"<span>"
-			+ "<fb:profile-pic uid='loggedinuser' facebook-logo='true'></fb:profile-pic>"
-			+ "Welcome, <fb:name uid='loggedinuser' useyou='false'></fb:name>"
-			+ "</span>";
-
-			FB.XFBML.Host.parseDomTree();
-		}
-		</script>
+	
 		<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US" type="text/javascript"></script><script type="text/javascript">FB.init("aeb808c99ee578b8db50cd761896bdfc");</script>
 	</head>
 	<body>
@@ -130,7 +117,6 @@
 					</div>
 					<div style="border: 0px solid red; text-align: right; float: left; position: relative; width: 390px; height: 41px; color: #fff; font-size: 20px; padding-top: 9px;">
 						<div id="user">
-							<fb:login-button v="2" size="large" onlogin="update_user_box();">Connect with Facebook</fb:login-button>
 						</div>
 					</div>
 				</div>
@@ -141,7 +127,7 @@
 					<ul class="topnav">
 						<li><a href="/">Home</a></li>
 						<li>
-						<a href="#">Party</a>
+						<a href="/categories/Party">Party</a>
 						<ul class="subnav">
 							{% for category in categories %}
 								{% ifequal category.parentcategory "Party" %}
@@ -232,60 +218,7 @@
 				
 				</div>
 				<div id="content-facebook">
-					<img src="/assets/popular.png">
-				
-					<div style="margin: 5px 0 0 0;">
-						<div style="position: relative; float: left; width: 35px; border: 0px solid blue; margin: 4px 0 0 0;">
-							<img src="/assets/thumbnail-test.png" class="thumbnail">
-						</div>
-						<div style="position: relative; float: left; width: 141px; border: 0px solid green; margin: 0 0 0 5px">
-							<div style="font-weight: bold;">Dave's Christmas Party</div>
-							<div>We need to plan and attend Dave's Christmas party as soon as we can.</div>
-						</div>
-					</div>
-					<div id="divfix"></div>
-
-					<div style=" margin: 5px 0 0 0;">
-						<div style="position: relative; float: left; width: 35px; border: 0px solid blue; margin: 4px 0 0 0;">
-							<img src="/assets/thumbnail-test2.png" class="thumbnail">
-						</div>
-						<div style="position: relative; float: left; width: 141px; border: 0px solid green; margin: 0 0 0 5px">
-							<div style="font-weight: bold;">Central Valley Business Incubator</div>
-							<div>Planning for the upcoming feature of changes we're making!</div>
-						</div>
-					</div>
-					
-					<div style="margin: 5px 0 0 0;">
-						<div style="position: relative; float: left; width: 35px; border: 0px solid blue; margin: 4px 0 0 0;">
-							<img src="/assets/thumbnail-test.png" class="thumbnail">
-						</div>
-						<div style="position: relative; float: left; width: 141px; border: 0px solid green; margin: 0 0 0 5px">
-							<div style="font-weight: bold;">Dave's Christmas Party</div>
-							<div>We need to plan and attend Dave's Christmas party as soon as we can.</div>
-						</div>
-					</div>
-					<div id="divfix"></div>
-					
-					<div style="margin: 5px 0 0 0;">
-						<div style="position: relative; float: left; width: 35px; border: 0px solid blue; margin: 4px 0 0 0;">
-							<img src="/assets/thumbnail-test.png" class="thumbnail">
-						</div>
-						<div style="position: relative; float: left; width: 141px; border: 0px solid green; margin: 0 0 0 5px">
-							<div style="font-weight: bold;">Dave's Christmas Party</div>
-							<div>We need to plan and attend Dave's Christmas party as soon as we can.</div>
-						</div>
-					</div>
-					<div id="divfix"></div>
-					
-					<div style="margin: 5px 0 0 0;">
-						<div style="position: relative; float: left; width: 35px; border: 0px solid blue; margin: 4px 0 0 0;">
-							<img src="/assets/thumbnail-test.png" class="thumbnail">
-						</div>
-						<div style="position: relative; float: left; width: 141px; border: 0px solid green; margin: 0 0 0 5px">
-							<div style="font-weight: bold;">Dave's Christmas Party</div>
-							<div>We need to plan and attend Dave's Christmas party as soon as we can.</div>
-						</div>
-					</div>
+					<iframe src="http://www.facebook.com/plugins/likebox.php?id=165704919783&amp;width=195&amp;connections=10&amp;stream=false&amp;header=true&amp;height=287" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:195px; height:287px; background-color: #ffffff;" allowTransparency="true"></iframe>
 					<div id="divfix"></div>
 				</div>
 			</div>

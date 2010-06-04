@@ -1,6 +1,11 @@
 {% extends "header.html" %}
 {% block content %}
 	{% ifnotequal promotion None %}
+	{% ifnotequal promotion.image None %}
+	<div class="group" id="image" name="image">
+		<img src="/image?id={{ promotion.uniquename }}">
+	</div>
+	{% endifnotequal %}
 	<div class="group empty-bottom-margin">
 		<h1 id="page-title">
 			{{ promotion.event }}
@@ -9,25 +14,15 @@
 	<div class="group">
 		{{ promotion.venue }}, {{ promotion.date }} - {{ promotion.time }}
 	</div>
-	{% ifnotequal promotion.image None %}
-	<div class="group" id="image" name="image">
-		<img src="/image?id={{ promotion.uniquename }}">
-	</div>
-	{% endifnotequal %}
 	<div class="group">
 		{{ promotion.description }}
 	</div>
 	
 	<div class="group">
-		<div id="feeds">
-			<div id="feed">
-				<a href="/{{ uniquename }}/rss">RSS 2.0 Feed</a>
-			</div>
-			<div id="feed">
-				<a href="/{{ uniquename }}/atom">Atom Feed</a>
-			</div>
-		</div>
+		<iframe src="http://www.facebook.com/plugins/like.php?href=http%253A%252F%252Fpartyplannr.com%252F{{ uniquename }}&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
 	</div>
+	
+	
 	
 	<div class="input-group">
 		<div>
