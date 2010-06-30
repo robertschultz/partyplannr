@@ -12,10 +12,6 @@ handlers:
   static_files: robots.txt
   upload: robots.txt
   
-- url: /googlefb5f71f14fe6fc35.html
-  static_files: googlefb5f71f14fe6fc35.html
-  upload: googlefb5f71f14fe6fc35.html
-  
 - url: /xd_receiver.htm
   static_files: xd_receiver.htm
   upload: xd_receiver.htm
