@@ -1,4 +1,7 @@
 {% extends "header.html" %}
+{% block title %}
+	{{ category_value }}
+{% endblock %}
 {% block content %}
 	{% ifnotequal reccount "0" %}
 		<div class="group category-header">

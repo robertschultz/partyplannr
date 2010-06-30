@@ -58,6 +58,11 @@ class Category(db.Model):
 	
 class CreateCategories(webapp.RequestHandler):
 	def get(self):
+		# Delete existing categories
+		q = db.GqlQuery("SELECT * FROM Category")
+		results = q.fetch(100)
+		db.delete(results)
+		
 		# Party
 		category = Category()
 		category.uniquename = "Birthday-Party"
@@ -81,15 +86,141 @@ class CreateCategories(webapp.RequestHandler):
 		category.put()
 		
 		category = Category()
-		category.uniquename = "Potluck"
-		category.name = "Potluck"
+		category.uniquename = "Concert"
+		category.name = "Concert"
 		category.parentcategory = "Party"
 		category.description = ""
 		category.put()
 		
 		category = Category()
-		category.uniquename = "Fraternity-Sorority-Party "
+		category.uniquename = "Fraternity-Sorority-Party"
 		category.name = "Fraternity/Sorority Party"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Business-Meeting"
+		category.name = "Business Meeting"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Barbecue"
+		category.name = "Barbecue"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Card-Night"
+		category.name = "Card Night"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Dinner-Party"
+		category.name = "Dinner Party"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Holiday-Party"
+		category.name = "Holiday Party"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Night-of-Mayhem"
+		category.name = "Night of Mayhem"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Movie-TV-Night"
+		category.name = "Movie/TV Night"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Drinking-Games"
+		category.name = "Drinking Games"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Bar-Night"
+		category.name = "Bar Night"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "LAN-Party"
+		category.name = "Lan Party"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Study-Group"
+		category.name = "Study Group"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Mixer"
+		category.name = "Mixer"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Slumber-Party"
+		category.name = "Slumber Party"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Erotic-Party"
+		category.name = "Erotic Party"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Benefit"
+		category.name = "Benefit"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Goodbye-Party"
+		category.name = "Goodbye Party"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "House-Party"
+		category.name = "House Party"
+		category.parentcategory = "Party"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Reunion"
+		category.name = "Reunion"
 		category.parentcategory = "Party"
 		category.description = ""
 		category.put()
@@ -108,10 +239,25 @@ class CreateCategories(webapp.RequestHandler):
 		category.parentcategory = "Causes"
 		category.description = ""
 		category.put()
+		
+		category = Category()
+		category.uniquename = "Rally"
+		category.name = "Rally"
+		category.parentcategory = "Causes"
+		category.description = ""
+		category.put()
+		
 		# Education
 		category = Category()
 		category.uniquename = "Class"
 		category.name = "Class"
+		category.parentcategory = "Education"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Lecture"
+		category.name = "Lecture"
 		category.parentcategory = "Education"
 		category.description = ""
 		category.put()
@@ -120,6 +266,41 @@ class CreateCategories(webapp.RequestHandler):
 		category = Category()
 		category.uniquename = "Club-Group-Meeting"
 		category.name = "Club/Group Meeting"
+		category.parentcategory = "Meetings"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Office-Hours"
+		category.name = "Office Hours"
+		category.parentcategory = "Meetings"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Workshop"
+		category.name = "Workshop"
+		category.parentcategory = "Meetings"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Convention"
+		category.name = "Convention"
+		category.parentcategory = "Meetings"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Dorm-House-Meeting"
+		category.name = "Dorm/House Meeting"
+		category.parentcategory = "Meetings"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Informational-Meeting"
+		category.name = "Informational Meeting"
 		category.parentcategory = "Meetings"
 		category.description = ""
 		category.put()
@@ -132,6 +313,170 @@ class CreateCategories(webapp.RequestHandler):
 		category.description = ""
 		category.put()
 		
+		category = Category()
+		category.uniquename = "Audition"
+		category.name = "Audition"
+		category.parentcategory = "Music-Arts"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Jam-Session"
+		category.name = "Jam Session"
+		category.parentcategory = "Music-Arts"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Listening-Party"
+		category.name = "Listening Party"
+		category.parentcategory = "Music-Arts"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Opening"
+		category.name = "Opening"
+		category.parentcategory = "Music-Arts"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Performance"
+		category.name = "Performance"
+		category.parentcategory = "Music-Arts"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Preview"
+		category.name = "Preview"
+		category.parentcategory = "Music-Arts"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Recital"
+		category.name = "Recital"
+		category.parentcategory = "Music-Arts"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Rehersal"
+		category.name = "Rehersal"
+		category.parentcategory = "Music-Arts"
+		category.description = ""
+		category.put()
+		
+		# Sports
+		category = Category()
+		category.uniquename = "Pep-Rally"
+		category.name = "Pep Rally"
+		category.parentcategory = "Sports"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Pick-up"
+		category.name = "Pick-up"
+		category.parentcategory = "Sports"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Sporting-Event"
+		category.name = "Sporting Event"
+		category.parentcategory = "Sports"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Sports-Practice"
+		category.name = "Sports Practice"
+		category.parentcategory = "Sports"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Tournament"
+		category.name = "Tournament"
+		category.parentcategory = "Sports"
+		category.description = ""
+		category.put()
+		
+		# Trips
+		category = Category()
+		category.uniquename = "Camping-Trip"
+		category.name = "Camping Trip"
+		category.parentcategory = "Trips"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Day-Trip"
+		category.name = "Day Trip"
+		category.parentcategory = "Trips"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Group-Trip"
+		category.name = "Group Trip"
+		category.parentcategory = "Trips"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Road-Trip"
+		category.name = "Road Trip"
+		category.parentcategory = "Trips"
+		category.description = ""
+		category.put()
+		
+		# Other
+		category = Category()
+		category.uniquename = "Carnival"
+		category.name = "Carnival"
+		category.parentcategory = "Other"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Ceremony"
+		category.name = "Ceremony"
+		category.parentcategory = "Other"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Festival"
+		category.name = "Festival"
+		category.parentcategory = "Other"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Flea-Market"
+		category.name = "Flea-Market"
+		category.parentcategory = "Other"
+		category.description = ""
+		category.put()
+		
+		category = Category()
+		category.uniquename = "Retail"
+		category.name = "Retail"
+		category.parentcategory = "Other"
+		category.description = ""
+		category.put()
+
+		
+		category = Category()
+		category.uniquename = "Wedding"
+		category.name = "Wedding"
+		category.parentcategory = "Other"
+		category.description = ""
+		category.put()
 
 # Handler that takes care of the processing for the RSS.
 class RssHandler(webapp.RequestHandler):

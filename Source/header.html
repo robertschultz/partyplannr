@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 		
@@ -13,14 +13,16 @@
 		<meta name="audience" content="all">
 		<meta name="rating" content="general">
 		
+		{% block meta %}{% endblock %}
+		
 		<link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
 		<link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 		<link rel="stylesheet" type="text/css" href="/stylesheets/jquery-ui-themeroller.css">
 		<link rel="stylesheet" type="text/css" href="/stylesheets/navigation.css">
 		
-		<title>PartyPlannr : Home</title>
-
+		<title>PartyPlannr : {% block title %}{% endblock %}</title>
+		
 		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 		<script type="text/javascript">
 			google.load("jquery", "1.2.6");
@@ -146,7 +148,7 @@
 					<ul class="topnav">
 						<li><a href="/">Home</a></li>
 						<li>
-						<a href="/categories/Party">Party</a>
+						<a href="#">Party</a>
 						<ul class="subnav">
 							{% for category in categories %}
 								{% ifequal category.parentcategory "Party" %}
@@ -237,7 +239,7 @@
 				
 				</div>
 				<div id="content-facebook">
-					<iframe src="http://www.facebook.com/plugins/likebox.php?id=165704919783&amp;width=195&amp;connections=10&amp;stream=false&amp;header=true&amp;height=287" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:195px; height:287px; background-color: #ffffff;" allowTransparency="true"></iframe>
+					<iframe src="http://www.facebook.com/plugins/likebox.php?id=166802987247&amp;width=195&amp;connections=10&amp;stream=false&amp;header=true&amp;height=287" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:195px; height:287px; background-color: #ffffff;" allowTransparency="true"></iframe>
 					<div id="divfix"></div>
 				</div>
 			</div>

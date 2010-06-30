@@ -1,4 +1,14 @@
 {% extends "header.html" %}
+{% block title %}
+	{{ promotion.event }}
+{% endblock %}
+{% block meta %}
+	<meta name="title" content="{{ promotion.event }}" />
+	<meta name="description" content="{{ promotion.description }}" />
+	{% ifnotequal promotion.image None %}
+	<link rel="image_src" href="http://www.partyplannr.com/image?id={{ promotion.uniquename }}" / >
+	{% endifnotequal %}
+{% endblock %}
 {% block content %}
 	{% ifnotequal promotion None %}
 	{% ifnotequal promotion.image None %}
@@ -19,10 +29,11 @@
 	</div>
 	
 	<div class="group">
-		<iframe src="http://www.facebook.com/plugins/like.php?href=http%253A%252F%252Fpartyplannr.com%252F{{ uniquename }}&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+		Interested in sharing with your friends on Facebook?  Click below!
+		<br/>
+		<a name="fb_share" type="button_count" share_url="http://www.partyplannr.com/{{ uniquename }}" href="http://www.facebook.com/sharer.php">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+		<br/>
 	</div>
-	
-	
 	
 	<div class="input-group">
 		<div>
