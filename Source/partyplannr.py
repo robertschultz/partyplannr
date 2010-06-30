@@ -19,6 +19,10 @@ from google.appengine.api import memcache
 from django.core.paginator import ObjectPaginator, InvalidPage
 from google.appengine.api import images
 
+#Set global vars here
+recaptcha_public_key = "6LdkIgkAAAAAAJw7yxe01QPbnQ1FYZPFVMw4z5n8"
+recaptcha_private_key = "6LdkIgkAAAAAACK4MmHhG_3hwNUa9b3uKkErr71z"
+
 # Promotion DB model.  Used to hold each record created on the main index page.
 class Promotion(db.Model):
 	uniquename = db.StringProperty();
@@ -605,7 +609,7 @@ class PromotionHandler(webapp.RequestHandler):
 class HomeHandler(webapp.RequestHandler):
 	def get(self):
 		chtml = captcha.displayhtml(
-		public_key = "6LdkIgkAAAAAAJw7yxe01QPbnQ1FYZPFVMw4z5n8",
+		public_key = recaptcha_public_key,
 		use_ssl = False,
 		error = None)
 			
@@ -625,7 +629,7 @@ class HomeHandler(webapp.RequestHandler):
 		cResponse = captcha.submit(
 			challenge,
 			response,
-			"6LdkIgkAAAAAACK4MmHhG_3hwNUa9b3uKkErr71z",
+			recaptcha_private_key,
 			remoteip)
 
 		if cResponse.is_valid:
@@ -635,7 +639,7 @@ class HomeHandler(webapp.RequestHandler):
 			success = False
 
 		chtml = captcha.displayhtml(
-		public_key = "6LdkIgkAAAAAAJw7yxe01QPbnQ1FYZPFVMw4z5n8",
+		public_key = recaptcha_public_key,
 		use_ssl = False,
 		error = cResponse.error_code)
 
@@ -679,7 +683,6 @@ class HomeHandler(webapp.RequestHandler):
 		
 			image = str(self.request.get("image"))
 		
-			#self.response.out.write("hjh")
 			if not image is "":
 				imageresized = images.resize(image, 453)
 				promotion.image = db.Blob(imageresized)
