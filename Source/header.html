@@ -66,6 +66,29 @@
 				    showAnim: "puff"
 				});
 				
+				$("#yes-button").click(function() {
+					$("#status").val("Y");
+					$("#contentform").submit();
+				});
+				
+				$("#no-button").click(function() {
+					$("#status").val("N");
+					$("#contentform").submit();
+				});
+				
+				$("#add-button").click(function() {
+					$("#guests").val(parseInt($("#guests").val())+1);
+					$("#guests-label").html($("#guests").val() + " Guests");
+				});
+
+				$("#remove-button").click(function() {
+					if (parseInt($("#guests").val())-1 >= 0)
+					{
+						$("#guests").val(parseInt($("#guests").val())-1);
+						$("#guests-label").html($("#guests").val() + " Guests");
+					}
+				});
+				
 				$("#contentform").validate({
 					rules: {
 						venue: "required",
